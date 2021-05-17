@@ -10,17 +10,16 @@ class AdminLogin extends Component {
 		};
 	}
 	onFinish = values => {
-    console.log("values",values);
     const {username, password} = values;
 		if(username === 'admin' && password === 'admin') {
       localStorage.setItem('admin', JSON.stringify({username: 'admin', password: 'admin'}))
-      window.location.replace('/admin-order');
-      // this.setState({redirect: true},() => this.setState({redirect: false}))
+      // window.location.replace('/admin/order');
+      this.setState({redirect: true},() => this.setState({redirect: false}))
     }
 	};
 	render() {
     if(this.state.redirect) {
-      return <Redirect to="/admin-order"/>
+      return <Redirect to="/admin/order"/>
     }
 		return (
 			<div

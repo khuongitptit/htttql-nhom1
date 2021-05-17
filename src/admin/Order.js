@@ -18,7 +18,6 @@ class Order extends Component {
 	}
 	updateOrders = filter => {
 		getOrders(filter).then(orders => {
-			console.log('orders', orders);
 			this.setState({ orders });
 		});
 	};
@@ -117,7 +116,7 @@ class Order extends Component {
 	render() {
     const admin = JSON.parse(localStorage.getItem('admin')) || {};
 		if (_.isEmpty(admin)) {
-			return <Redirect to="/admin-login" />;
+			return <Redirect to="/admin/login" />;
     }
 		return (
 			<div style={{ textAlign: 'center' }}>
