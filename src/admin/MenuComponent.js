@@ -7,10 +7,10 @@ class MenuComponent extends Component {
     return (
       <Menu mode="horizontal" style={{textAlign: 'center'}}>
         <Menu.Item key="order" >
-          <Link to="order">Đơn hàng</Link>
+          <Link to="admin-order">Đơn hàng</Link>
         </Menu.Item>
         <Menu.Item key="product">
-          <Link to="product">Hàng hóa</Link>
+          <Link to="admin-product">Hàng hóa</Link>
         </Menu.Item>
         {/* <Menu.Item key="customer">
           <Link to="customer">Khách hàng</Link>

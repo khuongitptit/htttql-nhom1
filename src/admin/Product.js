@@ -162,7 +162,7 @@ class Product extends Component {
 	render() {
     const admin = JSON.parse(localStorage.getItem('admin')) || {};
 		if (_.isEmpty(admin)) {
-			return <Redirect to="/admin/login" />;
+			return <Redirect to="/admin-login" />;
     }
 		const layout = {
 			labelCol: { span: 5 },
