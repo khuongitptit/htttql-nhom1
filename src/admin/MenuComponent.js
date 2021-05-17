@@ -12,12 +12,12 @@ class MenuComponent extends Component {
         <Menu.Item key="product">
           <Link to="product">Hàng hóa</Link>
         </Menu.Item>
-        <Menu.Item key="customer">
+        {/* <Menu.Item key="customer">
           <Link to="customer">Khách hàng</Link>
-        </Menu.Item>
-        <Menu.Item key="statistic">
+        </Menu.Item> */}
+        {/* <Menu.Item key="statistic">
           <Link to="statistic">Thống kê</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     )
   }

@@ -1,5 +1,6 @@
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import routes from './routes';
+import './App.scss';
 import 'antd/dist/antd.css';
 function App() {
   return (
