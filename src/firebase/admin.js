@@ -61,12 +61,12 @@ export const getOrders = filter => {
 	return db
 		.collection('orders')
 		.get()
-		.then(res => {
-			const allOrders = Promise.all(
+		.then(async res => {
+			const allOrders = await Promise.all(
 				res.docs.map(async doc => {
 					const customer = await _getUserById(doc.data().userId);
 					const orderItems = await Promise.all(doc.data().items.map(async item => {
-            const product = await _getProductById(item.id);
+            const product = await _getProductById(item.productId);
             return {
               ...item,
               product
@@ -81,7 +81,7 @@ export const getOrders = filter => {
 				})
 			);
 			if (filter) {
-				return _.filter(allOrders, product => _.includes(_.toLower(product.name), _.toLower(filter)));
+				return _.filter(allOrders, orderItem => _.includes(_.toLower(orderItem.customer.name), _.toLower(filter)));
 			}
 			return allOrders;
 		});

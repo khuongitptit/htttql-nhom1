@@ -43,6 +43,32 @@ class Order extends Component {
 				render: (text, record) => {
 					return record.customer.name;
 				},
+      },
+      {
+				title: 'Điện thoại',
+				dataIndex: 'customer.phone',
+				key: 'customer.phone',
+				render: (text, record) => {
+					return record.info.phone;
+				},
+      },
+      {
+				title: 'Email',
+				dataIndex: 'customer.email',
+				key: 'customer.email',
+				render: (text, record) => {
+					return record.info.email;
+				},
+      },
+      {
+				title: 'Địa chỉ',
+				dataIndex: 'customer.address',
+				key: 'customer.address',
+				render: (text, record) => {
+          console.log("record",record);
+          const address = record.info;
+					return `${_.get(address, 'address', '')}, ${_.get(address, 'commune', '')}, ${_.get(address, 'district', '')}, ${_.get(address, 'city', '')}`;
+				},
 			},
 			{
 				title: 'Hàng đặt',
@@ -53,7 +79,7 @@ class Order extends Component {
 						<div>
 							{record.orderItems.map(orderItem => {
 								return (
-									<Row style={{borderBottom: '1px solid #e1caca', marginTop: '5px'}}>
+									<Row style={{ marginTop: '5px'}}>
                     <Col span={10}><img style={{maxWidth: '50px'}} src={_.head(_.get(orderItem, 'product.photos'))}/></Col>
 										<Col span={10}>{_.get(orderItem, 'product.name')}</Col>
                     <Col span={2}>X</Col>
@@ -64,7 +90,7 @@ class Order extends Component {
 						</div>
 					);
         },
-        width: 800
+        width: 400
 			},
 			{
 				title: 'Thành tiền',
@@ -111,7 +137,7 @@ class Order extends Component {
 		this.setState({ search: e.target.value });
 	};
 	handleSearch = () => {
-		this.updateOrders(this.state.category, this.state.search);
+		this.updateOrders(this.state.search);
 	};
 	render() {
     const admin = JSON.parse(localStorage.getItem('admin')) || {};
