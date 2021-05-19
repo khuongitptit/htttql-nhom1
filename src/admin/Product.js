@@ -39,12 +39,23 @@ class Product extends Component {
 		removeProduct(productId)
 			.then(res => {
 				message.success({ content: 'Xóa hàng thành công' });
-				this.updateProducts();
+				this.updateProducts(this.state.category, this.state.search);
 			})
 			.catch(err => {
 				message.error({ content: 'Xóa hàng không thành công' });
 			});
-	};
+  };
+  showConfirm = productId => {
+    const _self = this;
+    Modal.confirm({
+      title: 'Xác nhận xóa mặt hàng này?',
+      okText: 'Xác nhận',
+      cancelText: 'Hủy',
+      onOk() {
+        _self.handleRemoveProduct(productId);
+      },
+    });
+  }
 	renderTable = () => {
 		const columns = [
 			{
@@ -57,18 +68,19 @@ class Product extends Component {
 				dataIndex: 'photos',
         key: 'photos',
         render: (text, record) => {
-          return <Row>
+          return <Row style={{height: '80px'}}>
             <Col span={8}>
-              <img src={record.photos[0]} width={50}/>
+              <img src={record.photos[0]} width={80} height={80} style={{border: record.photos[0] ? '1px solid #a9a0a0' : ''}}/>
             </Col>
             <Col span={8}>
-              <img src={record.photos[1]} width={50}/>
+              <img src={record.photos[1]} width={80} height={80} style={{border: record.photos[1] ? '1px solid #a9a0a0' : ''}}/>
             </Col>
             <Col span={8}>
-              <img src={record.photos[2]} width={50}/>
+              <img src={record.photos[2]} width={80} height={80} style={{border: record.photos[2] ? '1px solid #a9a0a0' : ''}}/>
             </Col>
           </Row>
-        }
+        },
+        width: 300,
 			},
 			{
 				title: 'Danh mục',
@@ -103,7 +115,7 @@ class Product extends Component {
 							<Button onClick={() => this.handleEditProduct(record)}>
 								<EditOutlined />
 							</Button>
-							<Button style={{ marginLeft: '10px' }} onClick={() => this.handleRemoveProduct(record.id)}>
+							<Button style={{ marginLeft: '10px' }} onClick={() => this.showConfirm(record.id)}>
 								<DeleteOutlined />
 							</Button>
 						</div>
@@ -120,7 +132,7 @@ class Product extends Component {
 			updateProduct(data)
 				.then(res => {
 					message.success({ content: 'Chỉnh sửa hàng thành công' });
-					this.updateProducts();
+					this.updateProducts(this.state.category, this.state.search);
 				})
 				.catch(err => {
 					message.error({ content: 'Chỉnh sửa hàng không thành công' });
@@ -136,11 +148,11 @@ class Product extends Component {
 			addProducts(data)
 				.then(res => {
 					message.success({ content: 'Thêm hàng thành công' });
-					this.updateProducts();
+					this.updateProducts(this.state.category, this.state.search);
 				})
-				// .catch(err => {
-				// 	message.error({ content: 'Thêm hàng không thành công' });
-				// });
+				.catch(err => {
+					message.error({ content: 'Thêm hàng không thành công' });
+				});
 		}
 		this.setState({ modalVisible: false });
 	};
@@ -265,7 +277,7 @@ class Product extends Component {
 							</Upload>
 						</Form.Item>
 						<Form.Item label="Mô tả" name="description">
-							<Input.TextArea />
+							<Input.TextArea autoSize/>
 						</Form.Item>
 						<Form.Item {...tailLayout}>
 							<Button onClick={() => this.setState({ modalVisible: false })}>Hủy</Button>
