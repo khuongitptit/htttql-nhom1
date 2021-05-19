@@ -50,7 +50,25 @@ class Product extends Component {
 			{
 				title: 'Tên',
 				dataIndex: 'name',
-				key: 'name',
+        key: 'name',
+      },
+      {
+				title: 'Hình ảnh',
+				dataIndex: 'photos',
+        key: 'photos',
+        render: (text, record) => {
+          return <Row>
+            <Col span={8}>
+              <img src={record.photos[0]} width={50}/>
+            </Col>
+            <Col span={8}>
+              <img src={record.photos[1]} width={50}/>
+            </Col>
+            <Col span={8}>
+              <img src={record.photos[2]} width={50}/>
+            </Col>
+          </Row>
+        }
 			},
 			{
 				title: 'Danh mục',

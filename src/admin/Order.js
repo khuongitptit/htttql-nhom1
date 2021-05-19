@@ -65,7 +65,6 @@ class Order extends Component {
 				dataIndex: 'customer.address',
 				key: 'customer.address',
 				render: (text, record) => {
-          console.log("record",record);
           const address = record.info;
 					return `${_.get(address, 'address', '')}, ${_.get(address, 'commune', '')}, ${_.get(address, 'district', '')}, ${_.get(address, 'city', '')}`;
 				},
