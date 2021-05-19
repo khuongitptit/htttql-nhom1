@@ -10,8 +10,8 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      username: '',
-      password: '',
+			username: '',
+			password: '',
 		};
 	}
 	handleChange = (value, field) => {
@@ -21,9 +21,13 @@ class Login extends Component {
 		const data = this.state;
 		login(data)
 			.then(res => {
-        localStorage.setItem('user',JSON.stringify(res[0]));
-				message.success({ content: 'Đăng nhập thành công' });
-				this.props.history.push('/');
+				if (!_.isEmpty(res)) {
+					localStorage.setItem('user', JSON.stringify(res[0]));
+					message.success({ content: 'Đăng nhập thành công' });
+					this.props.history.push('/');
+				} else {
+					message.error({ content: 'Đăng nhập không thành công' });
+				}
 			})
 			.catch(err => {
 				message.error({ content: 'Đăng nhập không thành công' });
@@ -48,9 +52,9 @@ class Login extends Component {
 												<input
 													type="text"
 													class="form-control"
-                          placeholder=""
-                          autoComplete="off"
-                          autofill="off"
+													placeholder=""
+													autoComplete="off"
+													autofill="off"
 													onChange={e => this.handleChange(e.target.value, 'username')}
 												/>
 											</div>
