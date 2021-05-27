@@ -217,7 +217,7 @@ class Product extends Component {
 							<Option value="all">Tất cả</Option>
 							<Option value="phone">Phone</Option>
 							<Option value="laptop">Laptop</Option>
-							<Option value="a">aaa</Option>
+							<Option value="accessories">Phụ kiện</Option>
 						</Select>
 					</Col>
 					<Col span={8}>

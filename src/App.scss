@@ -6,3 +6,17 @@
 	top: 10px;
 	left: 140px;
 }
+
+.product-home-img {
+  height: 320px;
+  padding: 10px;
+}
+.product-home-body {
+  height: 190px;
+  .product-name {
+    height: 30px;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

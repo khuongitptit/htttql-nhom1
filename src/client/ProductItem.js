@@ -31,16 +31,16 @@ class ProductItem extends Component {
     if(this.state.redirect) return <Redirect to="login"/>
 		return (
 			<div class="product">
-				<div class="product-img">
+				<div class="product-img product-home-img">
 					<img src={_.head(_.get(product ,'photos'))} alt="" />
 					<div class="product-label">
 						<span class="new">NEW</span>
 					</div>
 				</div>
-				<div class="product-body">
+				<div class="product-body product-home-body">
 					<p class="product-category">{_.get(product,'category')}</p>
 					<h3 class="product-name">
-						<a href="#">{_.get(product,'name')}</a>
+						<Link to={`/${product.id}`}>{_.get(product,'name')}</Link>
 					</h3>
 					<h4 class="product-price">
 						{_.get(product,'price')}
